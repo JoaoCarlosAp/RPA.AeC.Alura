@@ -1,4 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
+using RPA.AeC.Alura.Dominio.Crawler;
 using RPA.AeC.Alura.Dominio.Driver;
 
 namespace RPA.AeC.Alura.Aplicacao
@@ -49,13 +50,14 @@ namespace RPA.AeC.Alura.Aplicacao
             }
 
             _logger.LogInformation("Serviço finalizado: {time}", DateTimeOffset.Now);
-            await Task.Delay(1000, stoppingToken);
+            await Task.Delay(TimeSpan.FromHours(1), stoppingToken);
         }
 
         private void DoWork(string categoria, CancellationToken stoppingToken) 
         {
             using IServiceScope scope = _serviceProvider.CreateScope();
             IChromeDriver _chrome = scope.ServiceProvider.GetRequiredService<IChromeDriver>();
+            ICursoCrawler _cursoSelenium = scope.ServiceProvider.GetRequiredService<ICursoCrawler>();
 
             try
             {
@@ -66,7 +68,7 @@ namespace RPA.AeC.Alura.Aplicacao
                     return;
                 }
 
-
+                var consulta = _cursoSelenium.ConsultarCursos(driver, categoria);
 
             }
             catch (Exception ex)
