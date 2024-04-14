@@ -1,5 +1,5 @@
 ﻿using OpenQA.Selenium;
-using RPA.AeC.Alura.Dominio.Entidade;
+using RPA.AeC.Alura.Dominio.Curso.Entidade;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,10 +7,10 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RPA.AeC.Alura.Dominio.Crawler
+namespace RPA.AeC.Alura.Dominio.Curso.Crawler
 {
     public class CursoCrawler : ICursoCrawler
-    { 
+    {
         private string _url;
         private ILogger<CursoCrawler> _logger;
 

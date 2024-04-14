@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RPA.AeC.Alura.Dominio.Driver
+namespace RPA.AeC.Alura.Dominio.Curso.Driver
 {
     public interface IChromeDriver
     {

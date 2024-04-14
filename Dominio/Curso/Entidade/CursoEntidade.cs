@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RPA.AeC.Alura.Dominio.Entidade
+namespace RPA.AeC.Alura.Dominio.Curso.Entidade
 {
     public class CursoEntidade
     {
@@ -18,7 +18,7 @@ namespace RPA.AeC.Alura.Dominio.Entidade
             _titulo = titulo;
             _professor = professor;
             _cargaHoraria = cargaHoraria;
-            _descricao = descricao;         
+            _descricao = descricao;
             Validar();
         }
 
@@ -38,7 +38,7 @@ namespace RPA.AeC.Alura.Dominio.Entidade
         {
             get { return _descricao; }
         }
-        
+
         public void Validar()
         {
             if (string.IsNullOrEmpty(Titulo))

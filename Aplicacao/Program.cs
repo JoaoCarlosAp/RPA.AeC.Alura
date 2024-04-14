@@ -1,6 +1,6 @@
 using RPA.AeC.Alura.Aplicacao;
-using RPA.AeC.Alura.Dominio.Crawler;
-using RPA.AeC.Alura.Dominio.Driver;
+using RPA.AeC.Alura.Dominio.Curso.Crawler;
+using RPA.AeC.Alura.Dominio.Curso.Driver;
 
 IHost host = Host.CreateDefaultBuilder(args)
     .ConfigureServices(services =>

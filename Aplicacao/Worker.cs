@@ -1,6 +1,8 @@
 using Microsoft.Extensions.DependencyInjection;
-using RPA.AeC.Alura.Dominio.Crawler;
-using RPA.AeC.Alura.Dominio.Driver;
+using RPA.AeC.Alura.Dominio.Curso.Crawler;
+using RPA.AeC.Alura.Dominio.Curso.Driver;
+using RPA.AeC.Alura.Infraestrutura.Curso.Modelos;
+using RPA.AeC.Alura.Infraestrutura.Curso.Repositorio;
 
 namespace RPA.AeC.Alura.Aplicacao
 {
@@ -58,6 +60,7 @@ namespace RPA.AeC.Alura.Aplicacao
             using IServiceScope scope = _serviceProvider.CreateScope();
             IChromeDriver _chrome = scope.ServiceProvider.GetRequiredService<IChromeDriver>();
             ICursoCrawler _cursoSelenium = scope.ServiceProvider.GetRequiredService<ICursoCrawler>();
+            ICursoRepositorio<CursoModelo> service = scope.ServiceProvider.GetRequiredService<ICursoRepositorio<CursoModelo>>();
 
             try
             {
@@ -70,6 +73,10 @@ namespace RPA.AeC.Alura.Aplicacao
 
                 var consulta = _cursoSelenium.ConsultarCursos(driver, categoria);
 
+                if (consulta != null)
+                {
+                    service.InserirCurso(consulta, categoria);
+                }
             }
             catch (Exception ex)
             {

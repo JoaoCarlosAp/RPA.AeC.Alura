@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
 
-namespace RPA.AeC.Alura.Dominio.Driver
+namespace RPA.AeC.Alura.Dominio.Curso.Driver
 {
     public class ChromeDriver : IChromeDriver
     {
@@ -44,19 +44,19 @@ namespace RPA.AeC.Alura.Dominio.Driver
             }
         }
 
-        public void FinalizarChromeDriver() 
+        public void FinalizarChromeDriver()
         {
             try
             {
                 _driver?.Dispose();
             }
-            catch 
+            catch
             {
-            
+
             }
         }
 
-        public void LimparProcessosChrome() 
+        public void LimparProcessosChrome()
         {
             try
             {
