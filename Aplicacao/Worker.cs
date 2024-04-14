@@ -83,6 +83,8 @@ namespace RPA.AeC.Alura.Aplicacao
         {
             Queue<string> listaCategoria = new Queue<string>();
             listaCategoria.Enqueue("RPA");
+            listaCategoria.Enqueue("DDD");
+            listaCategoria.Enqueue("SOLID");
 
             return listaCategoria;
         }

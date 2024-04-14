@@ -64,13 +64,13 @@ namespace RPA.AeC.Alura.Dominio.Curso.Crawler
 
         private void PegarInformacoesCurso(ref List<CursoEntidade> cursos, IReadOnlyCollection<IWebElement> cursosEncontrados, IWebDriver driver)
         {
-            foreach (var paginaCurso in cursosEncontrados)
+            foreach (var selecionado in cursosEncontrados)
             {
                 try
                 {
-                    string titulo = paginaCurso.FindElement(By.ClassName("busca-resultado-nome")).Text;
-                    string descricao = paginaCurso.FindElement(By.ClassName("busca-resultado-descricao")).Text;
-                    string url = paginaCurso.FindElement(By.TagName("a")).GetAttribute("href");
+                    string titulo = selecionado.FindElement(By.ClassName("busca-resultado-nome")).Text;
+                    string descricao = selecionado.FindElement(By.ClassName("busca-resultado-descricao")).Text;
+                    string url = selecionado.FindElement(By.TagName("a")).GetAttribute("href");
 
                     if (!string.IsNullOrEmpty(url))
                     {
