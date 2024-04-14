@@ -14,7 +14,9 @@ namespace RPA.AeC.Alura.Dominio.Curso.Driver
     {
         private IWebDriver _driver;
 
-        public ChromeDriver() { }
+        public ChromeDriver() 
+        {
+        }
 
         public IWebDriver IniciarChromeDriver()
         {
@@ -25,7 +27,7 @@ namespace RPA.AeC.Alura.Dominio.Curso.Driver
                     PageLoadStrategy = PageLoadStrategy.Normal
                 };
 
-                //options.AddArgument("no-sandbox");
+                options.AddArgument("no-sandbox");
                 options.AddArgument("--profile-directory=Default");
                 options.AddArgument("--disable-web-security");
                 options.AddArgument("--disable-gpu");

@@ -43,6 +43,7 @@ namespace RPA.AeC.Alura.Dominio.Curso.Crawler
                                 var pageIndex = driver.FindElement(By.XPath($"//*[@href=\"/busca?pagina={id}&query={cursoPesquisado}\"]"));
                                 pageIndex.Click();
                             }
+
                             var cursosEncontrados = driver.FindElements(By.XPath("//*[@id=\"busca-resultados\"]/ul/li"));
                             PegarInformacoesCurso(ref cursos, cursosEncontrados, driver);
                         }
@@ -63,13 +64,13 @@ namespace RPA.AeC.Alura.Dominio.Curso.Crawler
 
         private void PegarInformacoesCurso(ref List<CursoEntidade> cursos, IReadOnlyCollection<IWebElement> cursosEncontrados, IWebDriver driver)
         {
-            foreach (var selecionado in cursosEncontrados)
+            foreach (var paginaCurso in cursosEncontrados)
             {
                 try
                 {
-                    string titulo = selecionado.FindElement(By.ClassName("busca-resultado-nome")).Text;
-                    string descricao = selecionado.FindElement(By.ClassName("busca-resultado-descricao")).Text;
-                    string url = selecionado.FindElement(By.TagName("a")).GetAttribute("href");
+                    string titulo = paginaCurso.FindElement(By.ClassName("busca-resultado-nome")).Text;
+                    string descricao = paginaCurso.FindElement(By.ClassName("busca-resultado-descricao")).Text;
+                    string url = paginaCurso.FindElement(By.TagName("a")).GetAttribute("href");
 
                     if (!string.IsNullOrEmpty(url))
                     {

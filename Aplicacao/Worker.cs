@@ -21,29 +21,19 @@ namespace RPA.AeC.Alura.Aplicacao
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            List<string> listaCurso = new List<string>
-            {
-                "RPA"
-            };
-
             try
             {
-                while (!stoppingToken.IsCancellationRequested && listaCurso.Count > 0)
+                Queue<string> listaCategoria = PegarLoteCategoria();
+
+                while (!stoppingToken.IsCancellationRequested && listaCategoria.Count > 0)
                 {
-                    if (listaCurso.Count > 0)
+                    Task[] tasks = new Task[_task];
+
+                    for (int i = 0; i < tasks.Length && listaCategoria.TryDequeue(out string categoria); i++)
                     {
-                        Task[] tasks = new Task[_task];
-
-                        for (int i = 0; i < tasks.Length && listaCurso.Count > 0; i++)
-                        {
-                            string categoria = listaCurso[0];
-                            listaCurso.RemoveAt(0);
-
-                            tasks[i] = Task.Factory.StartNew(() => DoWork(categoria, stoppingToken));
-                        }
-                        await Task.WhenAll(tasks);
+                        tasks[i] = Task.Factory.StartNew(() => DoWork(categoria, stoppingToken));
                     }
-
+                    await Task.WhenAll(tasks);
                 }
             }
             catch (Exception ex)
@@ -87,6 +77,14 @@ namespace RPA.AeC.Alura.Aplicacao
                 _chrome.FinalizarChromeDriver();
                 _chrome.LimparProcessosChrome();
             }
+        }
+
+        private Queue<string> PegarLoteCategoria() 
+        {
+            Queue<string> listaCategoria = new Queue<string>();
+            listaCategoria.Enqueue("RPA");
+
+            return listaCategoria;
         }
     }
 }

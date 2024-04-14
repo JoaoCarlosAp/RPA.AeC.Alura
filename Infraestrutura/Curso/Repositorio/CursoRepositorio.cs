@@ -19,9 +19,9 @@ namespace RPA.AeC.Alura.Infraestrutura.Curso.Repositorio
                     var novoCurso = new CursoModelo
                     {
                         Titulo          = curso.Titulo,
-                        Descricao       = curso.Descricao,
                         Professor       = curso.Professor,
                         CargaHoraria    = curso.CargaHoraria,
+                        Descricao       = curso.Descricao,
                         Categoria       = categoria
                     };
 
