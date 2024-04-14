@@ -55,13 +55,18 @@ namespace RPA.AeC.Alura.Aplicacao
         private void DoWork(string categoria, CancellationToken stoppingToken) 
         {
             using IServiceScope scope = _serviceProvider.CreateScope();
-
             IChromeDriver _chrome = scope.ServiceProvider.GetRequiredService<IChromeDriver>();
 
             try
             {
                 var driver = _chrome.IniciarChromeDriver();
-                if (driver == null);
+                if (driver == null) 
+                {
+                    _logger.LogError("Driver não iniciado corretamente!");
+                    return;
+                }
+
+
 
             }
             catch (Exception ex)
@@ -71,6 +76,7 @@ namespace RPA.AeC.Alura.Aplicacao
             finally
             {
                 _chrome.FinalizarChromeDriver();
+                _chrome.LimparProcessosChrome();
             }
         }
     }
